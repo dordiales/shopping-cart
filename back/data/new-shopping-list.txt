@@ -1,0 +1,3 @@
+Carne-de-tochomosca|1|1.20
+Mentats|2|3.70
+Nuka-Cola|12|0.84

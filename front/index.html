@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+    <header>
+      <ul>
+        <li>Stats</li>
+        <li>Inv</li>
+        <li>Data</li>
+        <li>Map</li>
+        <li>Radio</li>
+      </ul>
+    </header>
+    <h1>CESTA COMPRA</h1>
+    <main id="app">
+      <div class="imagenes">
+        <img
+          id="vault-boy-walking"
+          src="/imagenes/vault_boy_walking.gif"
+          alt="a fallout vault boy walking"
+        />
+        <h2>{{userName}}</h2>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Producto({{countProduct}})</th>
+            <th>Unit</th>
+            <th>p/u</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in filteredItems">
+            <td><button @click="hideRow(item)">❎</button></td>
+            <td>{{item.product}}</td>
+            <td>{{item.cuantity}}</td>
+            <td>{{item.value}}</td>
+            <td>{{subTotal(item)}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Subtotal</td>
+            <td>{{subTotalBox}}</td>
+          </tr>
+          <tr v-if="discount.apply === true">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Descuento</td>
+            <td>{{discount.value.toFixed(2)}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td>{{totalBox}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <label class="discount-button-black" v-show="!discount.apply">
+        <input type="checkbox" class="hidden" v-model="discount.apply " />
+        Descuento del Black Friday</label
+      >
+      <label class="discount-button-green" v-show="discount.apply">
+        <input type="checkbox" class="hidden" v-model="discount.apply " />
+        Descuento del Black Friday</label
+      >
+      <section>
+        <label for="product"> Producto: </label>
+        <input type="text" name="product" v-model="productToInsert" />
+        <label for="units"> unid: </label>
+        <input type="text" name="units" v-model="unitToInsert" />
+        <label for="priceunid"> p/u: </label>
+        <input type="text" name="priceunid" v-model="priceunitToInsert" />
+        <button @click="insertProduct">Añadir producto</button>
+      </section>
+    </main>
+    <script src="carrito.js"></script>
+  </body>
+</html>
